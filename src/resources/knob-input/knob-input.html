@@ -10,7 +10,7 @@
             <path ref="indicator" css="stroke-dashoffset: ${dashOffset}%" d="M20,76 A 40 40 0 1 1 80 76" />
         </svg>
     </div>
-    <div class="buttons">
+    <div class="buttons" if.bind="showButtons">
         <button class="volume-up">^</button>
         <button class="volume-stop">-</button>
         <button class="volume-down">v</button>

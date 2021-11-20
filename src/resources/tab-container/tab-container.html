@@ -1,6 +1,9 @@
 <template>
-    <div class="header" ref="headerElement">
-        <slot name="header"></slot>
+    <div class="header">
+        <div repeat.for="tab of tabs" class.bind="$index == selectedTab ? 'selected' : ''"
+            click.delegate="selectTab($index)">
+            ${tab.attributes['name'].value}
+        </div>
     </div>
     <div class="tabs" ref="tabsElement">
         <slot></slot>

@@ -6,5 +6,5 @@ export class ButtonInput {
     @bindable
     public value: boolean;
 
-    private id = uuid();
+    private id = '_'+uuid();
 }

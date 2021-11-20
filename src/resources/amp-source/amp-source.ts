@@ -1,9 +1,10 @@
-import { bindable, observable } from 'aurelia-framework';
+import { autoinject, bindable, observable, BindingEngine, Disposable } from 'aurelia-framework';
 import { Source } from 'resources/model/source';
 import { Zone } from 'resources/model/zone';
 import { v4 as uuid } from 'uuid';
 import './amp-source.scss';
 
+@autoinject
 export class AmpSource {
     @bindable
     public source: Source;
@@ -18,10 +19,22 @@ export class AmpSource {
     private element: HTMLElement;
     private editButton: HTMLElement;
     private editor: HTMLElement;
-    private id = uuid();
+    private id = '_'+uuid();
     private editClass: string = 'normal';
 
     private exitMenuFn;
+    private bindingSubscription: Disposable;
+
+    constructor(private bindingEngine: BindingEngine) {
+        this.bindingSubscription = bindingEngine.expressionObserver(this, 'zone.source')
+            .subscribe((n: number) => {
+                this.checked = n == this.source.id;
+            });
+    }
+
+    detached() {
+        this.bindingSubscription.dispose();
+    }
 
     attached() {
         this.input.checked = this.zone.source == this.source.id;
@@ -38,6 +51,9 @@ export class AmpSource {
             if (this.input.checked) {
                 this.zone.source = this.source.id;
             }
+        });
+        this.input.addEventListener('keyup', () => {
+            this.stopEditing();
         });
     }
 
