@@ -1,0 +1,20 @@
+<template>
+    <div class="header"><input value.bind="zone.name" tabindex="-1"></div>
+    <div class="body">
+        <div class="buttons">
+            <button-input value.two-way="zone.power">Power</button-input>
+            <button-input value.two-way="zone.pa">PA</button-input>
+            <button-input value.two-way="zone.mute">Mute</button-input>
+            <button-input value.two-way="zone.dnd">DnD</button-input>
+        </div>
+        <div class="knobs">
+            <knob-input value.two-way="zone.volume" min="0" max="38" zone.bind="zone" attribute="volume">Volume</knob-input>
+            <knob-input value.two-way="zone.treble" min="0" max="14" zone.bind="zone" attribute="treble">Treble</knob-input>
+            <knob-input value.two-way="zone.bass" min="0" max="14" zone.bind="zone" attribute="bass">Bass</knob-input>
+            <knob-input value.two-way="zone.balance" min="0" max="20" zone.bind="zone" attribute="balance">Balance</knob-input>
+        </div>
+        <div class="sources">
+            <amp-source repeat.for="source of sources" zone.two-way="zone" source.bind="source"></amp-source>
+        </div>
+    </div>
+</template>

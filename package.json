@@ -1,0 +1,58 @@
+{
+  "name": "mpr-6zhmaut-ui",
+  "description": "An Aurelia client application.",
+  "version": "0.1.0",
+  "repository": {
+    "type": "???",
+    "url": "???"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "aurelia-animator-css": "^1.0.4",
+    "aurelia-bootstrapper": "^2.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.6",
+    "@types/uuid": "^8.3.3",
+    "@types/webpack": "^5.28.0",
+    "@typescript-eslint/eslint-plugin": "^5.2.0",
+    "@typescript-eslint/parser": "^5.2.0",
+    "app-settings-loader": "^2.0.0",
+    "aurelia-cli": "^2.0.3",
+    "aurelia-testing": "^1.0.0",
+    "aurelia-webpack-plugin": "^5.0.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^9.0.1",
+    "css-loader": "^6.5.0",
+    "duplicate-package-checker-webpack-plugin": "^3.0.0",
+    "eslint": "^8.1.0",
+    "expose-loader": "^3.1.0",
+    "gulp": "^4.0.2",
+    "gulp-eslint": "^6.0.0",
+    "html-loader": "^3.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "json-loader": "^0.5.7",
+    "mini-css-extract-plugin": "^2.4.3",
+    "minimatch": "^3.0.4",
+    "promise-polyfill": "^8.2.1",
+    "sass": "^1.43.4",
+    "sass-loader": "^12.3.0",
+    "style-loader": "^3.3.1",
+    "tree-kill": "^1.2.2",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.4.4",
+    "webpack": "^5.60.0",
+    "webpack-bundle-analyzer": "^4.5.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.4.0"
+  },
+  "scripts": {
+    "build": "webpack --env production",
+    "start": "webpack server",
+    "build:dev": "webpack",
+    "analyze": "webpack --env production --analyze"
+  },
+  "engines": {
+    "node": ">=10.12.0"
+  }
+}

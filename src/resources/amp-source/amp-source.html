@@ -1,0 +1,14 @@
+<template ref="element" class.bind="editClass">
+    <label for.bind="id">
+        <input id.bind="id" type="radio" ref="input" name="zone${zone.id}-source">
+        <span>${source.name}</span>
+        <input ref="editor" type="text" class="editor" value.two-way="source.name">
+    </label>
+    <div class="menu">
+        <ul>
+            <li ref="editButton">
+                Edit
+            </li>
+        </ul>
+    </div>
+</template>

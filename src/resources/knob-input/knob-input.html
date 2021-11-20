@@ -1,0 +1,18 @@
+<template>
+    <div class="knob">
+        <input ref="input" type="number" id="id" value.two-way="value" min.bind="min" max.bind="max" step.bind="step"
+            tabindex="-1">
+        <label ref="label" for.bind="id" css="--knob-deg: ${angle}">
+            <slot></slot>
+        </label>
+        <svg ref="svg" namespace="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+            <path ref="indicatorBack" d="M20,76 A 40 40 0 1 1 80 76" />
+            <path ref="indicator" css="stroke-dashoffset: ${dashOffset}%" d="M20,76 A 40 40 0 1 1 80 76" />
+        </svg>
+    </div>
+    <div class="buttons">
+        <button class="volume-up">^</button>
+        <button class="volume-stop">-</button>
+        <button class="volume-down">v</button>
+    </div>
+</template>
