@@ -14,7 +14,6 @@ export function configure(aurelia: Aurelia): void {
   .globalResources(PLATFORM.moduleName('resources/button-input/button-input'))
   .globalResources(PLATFORM.moduleName('resources/amp-source/amp-source'))
   .globalResources(PLATFORM.moduleName('resources/amp-zone/amp-zone'))
-  .globalResources(PLATFORM.moduleName('resources/scenario-zone/scenario-zone'))
   .globalResources(PLATFORM.moduleName('resources/tab-container/tab-container'));
 
   if (environment.testing) {

@@ -5,6 +5,7 @@ import { Zone } from "resources/model/zone";
 @autoinject
 export class App {
     public zones: Zone[] = [];
+    public scenarioZones: Zone[] = [];
     public sources: Source[] = [];
     private updating: boolean;
 
@@ -20,6 +21,10 @@ export class App {
                         .subscribe((n, o) => this.zoneChanged(zone, attribute, n, o)));
 
             }
+        }
+        for (let i = 1; i <= 6; ++i) {
+            let zone = new Zone(10 + i);
+            this.scenarioZones[i - 1] = zone;
         }
         for (let i = 1; i <= 6; ++i) {
             let source = new Source(i);
@@ -84,8 +89,8 @@ export class App {
             return;
         }
         
-        let zoneFromUpdates = this.fromUpdates.find(z => z.id == zone.id);
-        if (zoneFromUpdates[attribute] == newValue) {
+        let zoneFromUpdates = this.fromUpdates ? this.fromUpdates.find(z => z.id == zone.id) : null;
+        if (zoneFromUpdates && zoneFromUpdates[attribute] == newValue) {
             zoneFromUpdates[attribute] = undefined;
             return;
         }

@@ -17,8 +17,6 @@ export class KnobInput {
     public zone: Zone;
     @bindable
     public attribute: string;
-    @bindable
-    public showButtons: boolean = true;
 
     private input: HTMLInputElement;
     private label: HTMLLabelElement;
@@ -46,11 +44,9 @@ export class KnobInput {
     attached() {
         this.label.onclick = function (e) { e.preventDefault(); };
 
-        if (this.showButtons) {
-            this.element.querySelector('button.volume-up').addEventListener('click', () => this.rampUp());
-            this.element.querySelector('button.volume-stop').addEventListener('click', () => this.rampStop());
-            this.element.querySelector('button.volume-down').addEventListener('click', () => this.rampDown());
-        }
+        this.element.querySelector('button.volume-up').addEventListener('click', () => this.rampUp());
+        this.element.querySelector('button.volume-stop').addEventListener('click', () => this.rampStop());
+        this.element.querySelector('button.volume-down').addEventListener('click', () => this.rampDown());
 
         const onInput = () => {
             this.value = Math.min(Math.max(this.value, this.min), this.max);

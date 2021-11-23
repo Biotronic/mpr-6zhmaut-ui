@@ -1,16 +1,48 @@
 amp-zone {
     border: 2px solid black;
     border-radius: 10px;
-    width: 600px;
+    width: 700px;
+    height: 160px;
     margin: 4px;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 
-    .header {
+    &.fixed {
+        /*
+        .header,
+        .actions {
+            button-input{
+                visibility: hidden;
+                pointer-events: none;
+            }
+        }
+        */
+        .hideable {
+            visibility: hidden;
+            pointer-events: none;
+        }
+    }
+    &.editable {
+        button {
+            visibility: hidden;
+            pointer-events: none;
+        }
+    }
+
+    &.inactive {
+        background: #CCC;
+    }
+
+    >.header {
         display: flex;
         justify-content: space-evenly;
         input {
             width: 66%;
             text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            background: transparent;
             &:not(:focus) {
                 border: none;
                 cursor: pointer;
@@ -25,13 +57,15 @@ amp-zone {
     }
     .body {
         display: flex;
-        .buttons,
-        .sources {
+        flex-grow: 2;
+        >.actions,
+        >.buttons,
+        >.sources {
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
         }
-        .knobs {
+        >.knobs {
             display: flex;
             flex-direction: row;
             justify-content: space-evenly;

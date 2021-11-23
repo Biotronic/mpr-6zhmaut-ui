@@ -1,7 +1,8 @@
 export class Zone {
+    public checked: boolean;
     public id: number;
     public name: string;
-    public power: boolean = false;
+    public power?: boolean = false;
     public pa: boolean = false;
     public mute: boolean = false;
     public dnd: boolean = false;
