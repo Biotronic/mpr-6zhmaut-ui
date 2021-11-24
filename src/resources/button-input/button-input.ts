@@ -8,7 +8,10 @@ export class ButtonInput {
     public value?: boolean;
 
     @bindable
-    public type: 'twostate' | 'tristate' = 'twostate';
+    public type: 'momentary' | 'twostate' | 'tristate' = 'twostate';
+
+    @bindable
+    public click: any;
 
     private checked: boolean = false;
 
@@ -17,7 +20,13 @@ export class ButtonInput {
     private state: string = 'unchecked';
 
     private clicked(e) {
-        if (this.type == 'tristate') {
+        if (this.click) {
+            this.click();
+        }
+        if (this.type == 'momentary') {
+            this.value = true;
+            setTimeout(() => this.value = false, 100);
+        } else if (this.type == 'tristate') {
             this.value = this.value ? false : (this.value === false) ? null : true;
         } else {
             this.value = !this.value;

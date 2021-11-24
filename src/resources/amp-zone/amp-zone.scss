@@ -32,7 +32,7 @@ amp-zone {
         }
     }
     &.editable {
-        button {
+        .fixed-only {
             visibility: hidden;
             pointer-events: none;
         }
@@ -87,6 +87,7 @@ amp-zone {
                 outline: none;
                 background: #EEE;
                 border-radius: 4px;;
+                color: black;
             }
         }
     }

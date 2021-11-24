@@ -1,6 +1,18 @@
-$button-highlight: #afafaf;
-$button-shadow: #000000;
-$button-indeterminate: #777777;
+@import '../style.scss';
+
+$border-radius: 6px;
+$border-width: 1px;
+$groove-width: 1px;
+$shadow-width: 2px;
+$background-color: $unit-background;
+$shadow-color: rgba(0, 0, 0, 33%);
+$groove-color: #000000;
+$gradient-verydark: #111111;
+$gradient-dark: #222222;
+$gradient-medium: #444444;
+$gradient-light: #777777;
+$button-dark: #555555;
+$button-light: #666666;
 
 button-input {
     font-size: 12px;
@@ -9,41 +21,60 @@ button-input {
         display: flex;
         align-items: center;
 
-        >div {
-            border: 1px solid;
-            border-radius: 4px;
-            border-top-color: $button-shadow;
-            border-left-color: $button-shadow;
-            border-bottom-color: $button-highlight;
-            border-right-color: $button-highlight;
-            margin-right: 4px;
+        * {
+            box-sizing: border-box;
+        }
+
+        >.button {
+            width: 18px;
+            height: 18px;
+
+            border-radius: $border-radius;
+            padding: $border-width;
+            background-image: linear-gradient(135deg,
+                    $gradient-dark,
+                    $gradient-light);
+
             >div {
-                display: inline-block;
-                width: 16px;
-                height: 16px;
-                margin-bottom: -4px;
+                background: $groove-color;
+                width: 100%;
+                height: 100%;
+                padding: $groove-width;
+                border-radius: calc($border-radius - $border-width);
 
-                background: #333;
-                border: 1px solid #333;
-                border-radius: 3px;
+                >div {
+                    border-radius: calc($border-radius - $border-width - $groove-width);
+                    width: 100%;
+                    height: 100%;
+                    padding: $border-width;
 
-                &.checked {
-                    border-top-color: $button-shadow;
-                    border-left-color: $button-shadow;
-                    border-bottom-color: $button-highlight;
-                    border-right-color: $button-highlight;
+                    >div {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: calc($border-radius - 2 * $border-width);
+                    }
                 }
+            }
 
-                &.unchecked {
-                    border-top-color: $button-highlight;
-                    border-left-color: $button-highlight;
-                    border-bottom-color: $button-shadow;
-                    border-right-color: $button-shadow;
+            &.unchecked>div>div {
+                background-image: linear-gradient(135deg,
+                        $gradient-light,
+                        $gradient-verydark);
+
+                >div {
+                    background: radial-gradient(circle at 75% 75%, $button-light, $background-color);
                 }
+            }
 
-                &.indeterminate {
-                    border-color: $button-indeterminate;
-                    background-color: $button-indeterminate;
+            &.checked>div>div {
+                background-image: linear-gradient(135deg,
+                        $gradient-verydark,
+                        $gradient-medium);
+
+                >div {
+                    border-left: $shadow-width solid $shadow-color;
+                    border-top: $shadow-width solid $shadow-color;
+                    background: radial-gradient(circle at 25% 25%, $button-dark, $background-color);
                 }
             }
         }

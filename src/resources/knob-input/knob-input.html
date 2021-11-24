@@ -14,10 +14,10 @@
                 <path ref="indicator" css="stroke-dashoffset: ${dashOffset}%" d="M20,76 A 40 40 0 1 1 80 76" />
             </svg>
         </div>
-        <div class="buttons">
-            <button class="material-icons" click.delegate="rampUp()" class="ramp-up"></button>
-            <button class="material-icons" click.delegate="rampStop()" class="ramp-stop">-</button>
-            <button class="material-icons" click.delegate="rampDown()" class="ramp-down">v</button>
+        <div class="fixed-only buttons">
+            <button-input type="momentary" icon="keyboard_arrow_up" click.delegate="rampUp()"></button-input>
+            <button-input type="momentary" icon="keyboard_arrow_down" click.delegate="rampStop()"></button-input>
+            <button-input type="momentary" icon="keyboard_arrow_down" click.delegate="rampDown()"></button-input>
         </div>
     </div>
 </template>
