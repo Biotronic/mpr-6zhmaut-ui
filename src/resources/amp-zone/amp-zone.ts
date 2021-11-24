@@ -1,6 +1,7 @@
 import { autoinject, BindingEngine, bindable, Disposable, observable } from 'aurelia-framework';
 import { Source } from 'resources/model/source';
 import { Zone } from 'resources/model/zone';
+import { v4 as uuid } from 'uuid';
 import './amp-zone.scss';
 
 @autoinject
@@ -16,14 +17,19 @@ export class AmpZone {
     public sources: Source[] = [];
 
 
+    private id = '_' + uuid();
     private className: string;
     private subscriptions: Disposable[] = [];
-    private noSource: Source = { name: 'Don\'t change zones', id: null } as Source;
+    private noSource: Source = { name: 'No change', id: null } as Source;
 
     constructor(private bindingEngine: BindingEngine) {
     }
 
     attached() {
+        this.updateClass();
+    }
+
+    updateClass() {
         if (this.isScenario) {
             this.className = this.zone?.checked ? 'editable active' : 'editable inactive';
         } else {
@@ -31,7 +37,7 @@ export class AmpZone {
         }
     }
 
-    zoneChanged(newValue, oldValue) {
+    zoneChanged(newValue: Zone, oldValue: Zone) {
         this.subscriptions.forEach((s) => s.dispose());
         this.subscriptions = [];
 
@@ -45,8 +51,10 @@ export class AmpZone {
         }
     }
 
-    changed(attribute: string, newValue : any, oldValue : any) {
-
+    changed(attribute: string, newValue: any, oldValue: any) {
+        if (attribute == 'checked') {
+            this.updateClass();
+        }
     }
 
     detached() {

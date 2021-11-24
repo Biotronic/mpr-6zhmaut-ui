@@ -1,23 +1,31 @@
+@import '../style.scss';
+
 amp-zone {
+    position: relative;
     border: 2px solid black;
-    border-radius: 10px;
     width: 700px;
     height: 160px;
-    margin: 4px;
+    margin: 0px;
+    padding: 4px;
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    background: $unit-background;
+    color: $font-color; 
+    text-transform: uppercase;
+    font-size: 12px;
+    padding-bottom: 12px;
+
+    &:nth-child(6n) {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+    &:nth-child(6n+1) {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
 
     &.fixed {
-        /*
-        .header,
-        .actions {
-            button-input{
-                visibility: hidden;
-                pointer-events: none;
-            }
-        }
-        */
         .hideable {
             visibility: hidden;
             pointer-events: none;
@@ -31,17 +39,44 @@ amp-zone {
     }
 
     &.inactive {
-        background: #CCC;
+        pointer-events: none;
+        .overlay {
+            background: #CCC;
+            background: repeating-linear-gradient(
+                -45deg,
+                #CCC,
+                #CCC 20px,
+                #AAA 20px,
+                #AAA 40px
+              );
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 100;
+            border-radius: 8px;
+            opacity: 0.25;
+        }
+        .enabler {
+            pointer-events: all;
+            z-index: 101;
+        }
+    }
+    &.active .overlay {
+        display: none;
     }
 
     >.header {
         display: flex;
         justify-content: space-evenly;
+        padding: 3px;
         input {
             width: 66%;
             text-align: center;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 14px;
+            color: $font-color;
             background: transparent;
             &:not(:focus) {
                 border: none;
@@ -58,17 +93,24 @@ amp-zone {
     .body {
         display: flex;
         flex-grow: 2;
+        column-gap: 4px;
+
+        >.actions,
+        >.buttons,
+        >.sources,
+        >.knobs  {
+            display: flex;
+            justify-content: space-between;
+        }
+
         >.actions,
         >.buttons,
         >.sources {
-            display: flex;
             flex-direction: column;
-            justify-content: space-evenly;
         }
+        
         >.knobs {
-            display: flex;
             flex-direction: row;
-            justify-content: space-evenly;
         }
     }
 }

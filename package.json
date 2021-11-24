@@ -9,7 +9,8 @@
   "license": "MIT",
   "dependencies": {
     "aurelia-animator-css": "^1.0.4",
-    "aurelia-bootstrapper": "^2.3.3"
+    "aurelia-bootstrapper": "^2.3.3",
+    "material-icons": "^1.10.2"
   },
   "devDependencies": {
     "@types/node": "^16.11.6",

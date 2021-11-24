@@ -2,7 +2,7 @@
     <div class="header"><input value.bind="zone.name" tabindex="-1"></div>
     <div class="body">
         <div class="actions hideable">
-            <button-input value.two-way="zone.checked">Use</button-input>
+            <button-input class="enabler" type="twostate" value.two-way="zone.checked">Use</button-input>
         </div>
         <div class="buttons">
             <button-input type.bind="isScenario ? 'tristate' : 'twostate'" value.two-way="zone.power">Power</button-input>
@@ -21,4 +21,5 @@
             <amp-source repeat.for="source of sources" zone.two-way="zone" source.bind="source"></amp-source>
         </div>
     </div>
+    <div class="overlay"></div>
 </template>
