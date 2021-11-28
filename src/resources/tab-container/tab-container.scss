@@ -2,13 +2,25 @@ tab-container {
     >.header {
         display: flex;
         justify-content: space-evenly;
+        padding: 8px;
         >* {
             cursor: pointer;
-            &.selected {
-                font-weight: bold;
+            background-color: white;
+            border-radius: 6px;
+            background-image: linear-gradient(170deg,
+                    #CCCCCC,
+                    #000000);
+            padding: 1px;
+            color: #CCCCCC;
+            &>div {
+                border-radius: 5px;
+                padding: 4px 24px;
+                background: #222222;
             }
-            &.hidden {
-                display: none;
+
+            &.selected {
+                cursor: initial;
+                font-weight: bold;
             }
         }
     }

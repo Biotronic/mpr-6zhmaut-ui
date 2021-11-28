@@ -1,10 +1,10 @@
 <template>
     <tab-container>
-        <div name="Scenarios">
-            <amp-zone is-scenario="true" repeat.for="zone of scenarioZones" zone.two-way="zone" sources.bind="sources"></amp-zone>
-        </div>
         <div name="Amplifier">
             <amp-zone repeat.for="zone of zones" zone.two-way="zone" sources.bind="sources"></amp-zone>
+        </div>
+        <div name="Scenarios">
+            <amp-zone is-scenario="true" repeat.for="zone of scenarioZones" zone.two-way="zone" sources.bind="sources"></amp-zone>
         </div>
     </tab-container>
 </template>

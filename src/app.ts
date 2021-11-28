@@ -1,6 +1,7 @@
 import { autoinject, BindingEngine, bindable, Disposable } from 'aurelia-framework';
 import { Source } from "resources/model/source";
 import { Zone } from "resources/model/zone";
+import './app.scss';
 
 @autoinject
 export class App {

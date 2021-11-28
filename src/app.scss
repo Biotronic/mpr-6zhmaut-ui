@@ -1,0 +1,11 @@
+@import './resources/style.scss';
+
+body {
+    background: #333333;
+}
+
+div[name='Amplifier'], div[name='Scenarios'] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
