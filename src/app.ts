@@ -1,4 +1,5 @@
 import { autoinject, BindingEngine, bindable, Disposable } from 'aurelia-framework';
+import { Scenario } from 'resources/model/Scenario';
 import { Source } from "resources/model/source";
 import { Zone } from "resources/model/zone";
 import './app.scss';
@@ -6,7 +7,7 @@ import './app.scss';
 @autoinject
 export class App {
     public zones: Zone[] = [];
-    public scenarioZones: Zone[] = [];
+    public scenarios: Scenario[] = [];
     public sources: Source[] = [];
     private updating: boolean;
 
@@ -24,10 +25,6 @@ export class App {
             }
         }
         for (let i = 1; i <= 6; ++i) {
-            let zone = new Zone(10 + i);
-            this.scenarioZones[i - 1] = zone;
-        }
-        for (let i = 1; i <= 6; ++i) {
             let source = new Source(i);
             this.sources[i - 1] = source;
             for (let attribute of Object.keys(source)) {
@@ -39,7 +36,9 @@ export class App {
         }
 
         setInterval(() => this.updateZones(), 250);
+        this.updateZones();
         this.updateSources();
+        this.updateScenarios();
     }
 
     private fromUpdates: Zone[];
@@ -51,13 +50,11 @@ export class App {
             this.updating = true;
             this.fromUpdates = data;
             for (let i in data) {
-                if (+i > 6) {
-                    break;
-                }
-
                 let existing = this.zones.find((z) => z.id == data[i].id);
                 if (existing) {
                     Object.assign(existing, data[i]);
+                } else if (data[i].id < 40 && data[i].id > 10 && (data[i].id % 10) <= 6) {
+                    this.zones.push(data[i]);
                 }
             }
             this.updating = false;
@@ -79,6 +76,15 @@ export class App {
                     Object.assign(existing, data[i]);
                 }
             }
+        });
+    }
+
+    private updateScenarios() {
+        fetch(`http://localhost:3000/api/scenarios`, {
+            method: "GET"
+        }).then((response) => response.json()
+        ).then((data: Scenario[]) => {
+            console.log(data);
         });
     }
 

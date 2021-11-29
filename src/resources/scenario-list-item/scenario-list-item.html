@@ -1,0 +1,8 @@
+<template>
+    <span>
+        <span click.delegate="selectScenario()" class="no-edit">${scenario.name}</span>
+        <input type="text" value.bind="scenario.name" class="edit-only">
+        <span click.delegate="renameScenario()" class="material-icons">edit</span>
+        <span click.delegate="deleteScenario()" class="material-icons">delete</span>
+    </span>
+</template>

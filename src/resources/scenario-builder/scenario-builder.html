@@ -1,0 +1,13 @@
+<template>
+    <div id="amp">
+        <amp-zone is-scenario="true" repeat.for="zone of zones" zone.two-way="zone" sources.bind="sources"></amp-zone>
+    </div>
+    <div id="scenarios">
+        <scenario-list-item repeat.for="scenario of scenarios" scenario.bind="scenario" select.call="select(scenario)" delete.call="delete(scenario)"></scenario-list-item>
+        <div class="add-button" click.delegate="newScenario()">
+            <span>
+                <span>Add new scenario</span>
+                <span class="material-icons">add_circle_outline</span></span>
+        </div>
+    </div>
+</template>

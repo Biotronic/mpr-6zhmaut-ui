@@ -1,0 +1,12 @@
+scenario-list-item {
+    &.editing {
+        .no-edit {
+            display: none;
+        }
+    }
+    &:not(.editing) {
+        .edit-only {
+            display: none;
+        }
+    }
+}

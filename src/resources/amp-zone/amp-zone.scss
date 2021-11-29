@@ -54,12 +54,11 @@ amp-zone {
                     #AAA 20px,
                     #AAA 40px);
             width: 100%;
-            height: 100%;
+            height: calc(100% - 8px);
             position: absolute;
             top: 0px;
             left: 0px;
             z-index: 100;
-            border-radius: 8px;
             opacity: 0.25;
         }
 
