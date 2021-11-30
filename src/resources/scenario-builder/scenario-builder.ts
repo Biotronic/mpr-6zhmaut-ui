@@ -27,14 +27,17 @@ export class ScenarioBuilder {
     }
 
     allZonesChanged(newValue: Zone[]) {
+        console.log(newValue);
         if (this.subscription) {
             this.subscription.dispose();
         }
         this.subscription = this.bindingEngine.collectionObserver(this.allZones)
             .subscribe(this.allZonesElementChanged.bind(this));
+        this.allZonesElementChanged(newValue);
     }
 
     allZonesElementChanged(newValue: Zone[]) {
+        console.log(newValue);
         this.zones = [];
         for (let z of this.allZones) {
             this.zones.push(new Zone(z.id, z.name));

@@ -84,7 +84,7 @@ export class App {
             method: "GET"
         }).then((response) => response.json()
         ).then((data: Scenario[]) => {
-            console.log(data);
+            this.scenarios = data;
         });
     }
 

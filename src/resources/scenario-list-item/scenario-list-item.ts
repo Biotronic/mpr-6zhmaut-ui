@@ -29,7 +29,10 @@ export class ScenarioListItem {
     private deleteScenario() {
         this.delete();
     }
-    private stopRename() {
+    private stopRename(e: Event) {
+        if (e.target == this.element.querySelector('input')) {
+            return;
+        }
         this.element.classList.remove('editing');
         document.removeEventListener('click', this.handler);
     }
