@@ -1,4 +1,6 @@
 import { autoinject, BindingEngine, bindable, Disposable } from 'aurelia-framework';
+import { plainToClass } from 'class-transformer';
+import 'reflect-metadata';
 import { Scenario } from 'resources/model/Scenario';
 import { Source } from "resources/model/source";
 import { Zone } from "resources/model/zone";
@@ -54,7 +56,7 @@ export class App {
                 if (existing) {
                     Object.assign(existing, data[i]);
                 } else if (data[i].id < 40 && data[i].id > 10 && (data[i].id % 10) <= 6) {
-                    this.zones.push(data[i]);
+                    this.zones.push(plainToClass(Zone, data[i]));
                 }
             }
             this.updating = false;
@@ -84,7 +86,7 @@ export class App {
             method: "GET"
         }).then((response) => response.json()
         ).then((data: Scenario[]) => {
-            this.scenarios = data;
+            this.scenarios = data.map(z => plainToClass(Scenario, z));
         });
     }
 

@@ -107,16 +107,6 @@ knob-input {
             flex-direction: column;
             justify-content: flex-start;
             gap: 15px;
-
-            .ramp-up::before {
-                content: "keyboard_arrow_down"
-            }
-            .ramp-stop {
-
-            }
-            .ramp-down {
-
-            }
         }
     }
 }

@@ -1,4 +1,6 @@
 scenario-list-item {
+    user-select: none;
+
     &.editing {
         .no-edit {
             display: none;
@@ -8,5 +10,13 @@ scenario-list-item {
         .edit-only {
             display: none;
         }
+    }
+
+    &.selected {
+        background: red;
+    }
+
+    &.unselected {
+
     }
 }

@@ -3,7 +3,8 @@
         <amp-zone is-scenario="true" repeat.for="zone of zones" zone.two-way="zone" sources.bind="sources"></amp-zone>
     </div>
     <div id="scenarios">
-        <scenario-list-item repeat.for="scenario of scenarios" scenario.bind="scenario" select.call="select(scenario)" delete.call="delete(scenario)"></scenario-list-item>
+        <scenario-list-item repeat.for="scenario of scenarios" scenario.bind="scenario" select.call="select(scenario)"
+            delete.call="delete(scenario)" class.bind="scenario.selected ? 'selected' : 'unselected'"></scenario-list-item>
         <div class="add-button" click.delegate="newScenario()">
             <span>
                 <span>Add new scenario</span>

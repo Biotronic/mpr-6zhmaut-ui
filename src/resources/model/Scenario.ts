@@ -4,9 +4,10 @@ export class Scenario {
     public id: number;
     public name: string;
     public description: string;
-    public zones: Zone[] = [];
+    public zones: Partial<Zone>[] = [];
 
-    constructor(name: string) {
+    constructor(id: number, name: string) {
+        this.id = id;
         this.name = name;
     }
 }

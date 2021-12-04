@@ -11,6 +11,9 @@ export class ButtonInput {
     public type: 'momentary' | 'twostate' | 'tristate' = 'twostate';
 
     @bindable
+    public icon: string;
+
+    @bindable
     public click: any;
 
     private checked: boolean = false;

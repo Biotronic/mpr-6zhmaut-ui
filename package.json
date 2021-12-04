@@ -10,7 +10,9 @@
   "dependencies": {
     "aurelia-animator-css": "^1.0.4",
     "aurelia-bootstrapper": "^2.3.3",
-    "material-icons": "^1.10.2"
+    "class-transformer": "^0.5.1",
+    "material-icons": "^1.10.2",
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
     "@types/node": "^16.11.6",

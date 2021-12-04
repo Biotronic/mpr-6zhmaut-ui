@@ -1,4 +1,4 @@
-import { autoinject, bindable } from 'aurelia-framework'
+import { autoinject, bindable, BindingEngine, observable } from 'aurelia-framework'
 import { Scenario } from 'resources/model/Scenario';
 import './scenario-list-item.scss';
 
