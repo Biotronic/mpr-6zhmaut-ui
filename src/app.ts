@@ -38,13 +38,13 @@ export class App {
         }
 
         setInterval(() => this.updateZones(), 250);
-        this.updateZones();
+        this.updateZones(true);
         this.updateSources();
         this.updateScenarios();
     }
 
     private fromUpdates: Zone[];
-    private updateZones() {
+    private updateZones(first: boolean = false) {
         fetch(`http://localhost:3000/api/zones`, {
             method: "GET"
         }).then((response) => response.json()
@@ -54,7 +54,13 @@ export class App {
             for (let i in data) {
                 let existing = this.zones.find((z) => z.id == data[i].id);
                 if (existing) {
-                    Object.assign(existing, data[i]);
+                    if (!first) {
+                        let name = existing.name;
+                        Object.assign(existing, data[i]);
+                        existing.name = name;
+                    } else {
+                        Object.assign(existing, data[i]);
+                    }
                 } else if (data[i].id < 40 && data[i].id > 10 && (data[i].id % 10) <= 6) {
                     this.zones.push(plainToClass(Zone, data[i]));
                 }
@@ -114,7 +120,6 @@ export class App {
     }
 
     private sourceChanged(source: Source, attribute: string, newValue, oldValue) {
-        console.log(`Source ${source.id} changed: ${attribute} ${oldValue} => ${newValue}`);
         if (oldValue == newValue) {
             return;
         }
@@ -127,12 +132,26 @@ export class App {
         });
     }
 
+    private saveZones() {
+        fetch(`http://localhost:3000/api/zones`, {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(this.zones)
+        });
+    }
+
     private saveScenarios() {
-        console.log('Saving: ', this.scenarios);
         fetch(`http://localhost:3000/api/scenarios`, {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(this.scenarios)
+        });
+    }
+
+    private selectScenario(scenario: Scenario) {
+        fetch(`http://localhost:3000/api/scenarios/${scenario.id}/engage`, {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' }
         });
     }
 }

@@ -23,7 +23,6 @@ export class ScenarioBuilder {
     @observable
     private zones: Zone[] = [];
     private allZonesSubscription: Disposable;
-    private zoneSubscriptions: Disposable[] = [];
 
     private selected: Scenario;
 
@@ -44,16 +43,6 @@ export class ScenarioBuilder {
         if (!oldValue?.length && newValue?.length) {
             this.select(newValue[0]);
         }
-    }
-
-    zonesChanged(newValue: Zone[], oldValue: Zone[]) {
-        this.allZonesSubscription = this.bindingEngine.collectionObserver(this.zones)
-            .subscribe(this.zonesElementChanged.bind(this));
-        this.zonesElementChanged(newValue);
-    }
-
-    zonesElementChanged(newValue: Zone[]) {
-        console.log('zonesElementChanged:', newValue);
     }
 
     allZonesChanged(newValue: Zone[]) {
@@ -90,7 +79,6 @@ export class ScenarioBuilder {
             let existing = this.convertToEditor(scenario.zones.find(z => z.id == zone.id), zone.id);
             Object.assign(zone, existing);
         }
-        console.log('Selected: ', this.selected);
     }
 
     convertToEditor(zone: Partial<Zone>, id: number): Zone {

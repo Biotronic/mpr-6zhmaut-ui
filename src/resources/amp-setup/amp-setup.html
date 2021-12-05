@@ -1,3 +1,8 @@
 <template>
-    <amp-zone repeat.for="zone of zones" zone.two-way="zone" sources.bind="sources"></amp-zone>
+    <div id="amp">
+        <amp-zone repeat.for="zone of zones" zone.two-way="zone" sources.bind="sources" save.call="save()"></amp-zone>
+    </div>
+    <div id="scenarios">
+        <scenario-list-item repeat.for="scenario of scenarios" scenario.bind="scenario" select.call="selectScenario({scenario: scenario})" read-only="true"></scenario-list-item>
+    </div>
 </template>

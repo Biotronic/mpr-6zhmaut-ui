@@ -13,6 +13,9 @@ export class ScenarioListItem {
     @bindable
     public delete: () => void;
 
+    @bindable
+    public readOnly: boolean;
+
     private editor: HTMLElement;
 
     constructor(private element: Element) {

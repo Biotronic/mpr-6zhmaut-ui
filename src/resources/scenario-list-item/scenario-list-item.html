@@ -2,7 +2,7 @@
     <span>
         <span click.delegate="selectScenario()" class="no-edit">${scenario.name}</span>
         <input type="text" value.bind="scenario.name" class="edit-only" ref="editor" keyup.delegate="keyup($event)">
-        <span click.delegate="renameScenario()" class="material-icons no-edit">edit</span>
-        <span click.delegate="deleteScenario()" class="material-icons no-edit">delete</span>
+        <span click.delegate="renameScenario()" class="material-icons no-edit" if.bind="!readOnly">edit</span>
+        <span click.delegate="deleteScenario()" class="material-icons no-edit" if.bind="!readOnly">delete</span>
     </span>
 </template>

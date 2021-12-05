@@ -16,6 +16,8 @@ export class AmpZone {
     @bindable
     public sources: Source[] = [];
 
+    @bindable
+    public save: () => void;
 
     private id = '_' + uuid();
     private className: string;
@@ -52,8 +54,14 @@ export class AmpZone {
     }
 
     changed(attribute: string, newValue: any, oldValue: any) {
+        if (newValue == oldValue) return;
+
         if (attribute == 'checked') {
             this.updateClass();
+        }
+
+        if (!!this.save) {
+            this.save();
         }
     }
 

@@ -1,5 +1,20 @@
 amp-setup {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: [left] 1fr [middle] 800px [right] 1fr;
+    #amp {
+        grid-column-start: middle;
+    }
+    #scenarios {
+        width: 300px;
+        > scenario-list-item {
+            height: 32px;
+            width: 100%;
+            border: 1px outset #222222;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    }
 }
