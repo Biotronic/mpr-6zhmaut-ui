@@ -3,25 +3,25 @@
         <div class="header"><input value.bind="zone.name" tabindex="-1"></div>
         <div class="body">
             <div class="actions hideable">
-                <button-input class="enabler" type="twostate" value.two-way="zone.checked">Use</button-input>
+                <button-input class="enabler" type="twostate" value.two-way="zone.checked" icon="add">Use</button-input>
             </div>
             <div class="buttons">
-                <button-input type.bind="isScenario ? 'tristate' : 'twostate'" value.two-way="zone.power">Power
+                <button-input type.bind="isScenario ? 'tristate' : 'twostate'" value.two-way="zone.power" icon="power_settings_new">Power
                 </button-input>
-                <button-input type.bind="isScenario ? 'tristate' : 'twostate'" value.two-way="zone.pa">PA</button-input>
-                <button-input type.bind="isScenario ? 'tristate' : 'twostate'" value.two-way="zone.mute">Mute
+                <button-input type.bind="isScenario ? 'tristate' : 'twostate'" value.two-way="zone.pa" icon="campaign">PA</button-input>
+                <button-input type.bind="isScenario ? 'tristate' : 'twostate'" value.two-way="zone.mute" icon="volume_off">Mute
                 </button-input>
-                <button-input type.bind="isScenario ? 'tristate' : 'twostate'" value.two-way="zone.dnd">DnD
+                <button-input type.bind="isScenario ? 'tristate' : 'twostate'" value.two-way="zone.dnd" icon="do_not_disturb">DnD
                 </button-input>
             </div>
             <div class="knobs">
-                <knob-input value.two-way="zone.volume" min="0" max="38" zone.bind="zone" attribute="volume">Volume
+                <knob-input value.two-way="zone.volume" min="0" max="38" zone.bind="zone" attribute="volume" icon="add">Volume
                 </knob-input>
-                <knob-input value.two-way="zone.treble" min="0" max="14" zone.bind="zone" attribute="treble">Treble
+                <knob-input value.two-way="zone.treble" min="0" max="14" zone.bind="zone" attribute="treble" icon="add">Treble
                 </knob-input>
-                <knob-input value.two-way="zone.bass" min="0" max="14" zone.bind="zone" attribute="bass">Bass
+                <knob-input value.two-way="zone.bass" min="0" max="14" zone.bind="zone" attribute="bass" icon="add">Bass
                 </knob-input>
-                <knob-input value.two-way="zone.balance" min="0" max="20" zone.bind="zone" attribute="balance">Balance
+                <knob-input value.two-way="zone.balance" min="0" max="20" zone.bind="zone" attribute="balance" icon="add">Balance
                 </knob-input>
             </div>
             <div class="sources">
