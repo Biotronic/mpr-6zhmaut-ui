@@ -10,6 +10,13 @@ scenario-list-item {
     
 
     &.editing {
+        input {
+            border: none;
+            outline: none;
+        }
+        &.selected {
+            background: white;
+        }
         .no-edit {
             display: none;
         }

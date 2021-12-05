@@ -1,7 +1,7 @@
-<template ref="element" class.bind="(source.id == zone.source ? 'selected' : 'unselected')+' '+editClass" click.delegate="selectSource()">
+<template ref="element" class.bind="(source.id == zone.source ? 'selected' : 'unselected')" click.delegate="selectSource()">
     <span>
         <span class="no-edit">${source.name}</span>
-        <input type="text" value.bind="source.name" class="edit-only" ref="editor">
-        <span click.delegate="renameSource()" class="material-icons">edit</span>
+        <input type="text" value.bind="source.name" class="edit-only" ref="editor" keyup.delegate="keyup($event)">
+        <span click.delegate="renameSource()" class="material-icons no-edit">edit</span>
     </span>
 </template>

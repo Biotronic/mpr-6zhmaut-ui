@@ -12,18 +12,16 @@ export class AmpSource {
     @bindable
     public zone: Zone;
 
-    private input: HTMLInputElement;
     private editor: HTMLElement;
     private id = '_'+uuid();
-    private editClass: string = 'normal';
     private handler: any;
 
-    constructor(){
+    constructor(private element: Element){
         this.handler = this.stopRename.bind(this);
     }
 
     renameSource() {
-        this.editClass = 'editing';
+        this.element.classList.add('editing');
         setTimeout(() => this.editor.focus(), 100);
         document.addEventListener('click', this.handler);
     }
@@ -32,11 +30,17 @@ export class AmpSource {
         this.zone.source = this.source.id;
     }
 
-    private stopRename(e: Event) {
+    stopRename(e: Event) {
         if (this.editor.contains(e.target as Node)) {
             return;
         }
-        this.editClass = 'normal';
+        this.element.classList.remove('editing');
         document.removeEventListener('click', this.handler);
+    }
+
+    keyup(e: KeyboardEvent) {
+        if (e.key == 'Enter') {
+            this.stopRename(new Event(''));
+        }
     }
 }

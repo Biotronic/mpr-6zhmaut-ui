@@ -13,6 +13,8 @@ export class ScenarioListItem {
     @bindable
     public delete: () => void;
 
+    private editor: HTMLElement;
+
     constructor(private element: Element) {
         this.handler = this.stopRename.bind(this);
     }
@@ -20,11 +22,11 @@ export class ScenarioListItem {
     private selectScenario() {
         this.select();
     }
-    
+
     private handler: any;
     private renameScenario() {
         this.element.classList.add('editing');
-        this.element.querySelector('input').focus();
+        this.editor.focus();
         document.addEventListener('click', this.handler);
     }
 
@@ -33,7 +35,7 @@ export class ScenarioListItem {
     }
 
     private stopRename(e: Event) {
-        if (e.target == this.element.querySelector('input')) {
+        if (this.editor.contains(e.target as Node)) {
             return;
         }
         this.element.classList.remove('editing');
