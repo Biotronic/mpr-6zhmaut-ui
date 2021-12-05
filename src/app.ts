@@ -126,4 +126,13 @@ export class App {
             body: JSON.stringify(update)
         });
     }
+
+    private saveScenarios() {
+        console.log('Saving: ', this.scenarios);
+        fetch(`http://localhost:3000/api/scenarios`, {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(this.scenarios)
+        });
+    }
 }

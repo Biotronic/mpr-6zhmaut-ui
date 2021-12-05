@@ -1,6 +1,6 @@
 <template ref="element" class.bind="editClass">
     <label for.bind="id">
-        <input id.bind="id" type="radio" ref="input" name="zone${zone.id}-source">
+        <input id.bind="id" type="radio" ref="input" name="zone${zone.id}-source" model.bind="source.id" checked.bind="zone.source">
         <span>${source.name}</span>
         <input ref="editor" type="text" class="editor" value.two-way="source.name">
     </label>

@@ -5,6 +5,7 @@ export class Scenario {
     public name: string;
     public description: string;
     public zones: Partial<Zone>[] = [];
+    public selected: boolean;
 
     constructor(id: number, name: string) {
         this.id = id;

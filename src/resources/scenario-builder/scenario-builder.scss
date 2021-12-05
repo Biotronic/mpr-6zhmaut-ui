@@ -6,7 +6,8 @@ scenario-builder {
     }
     #scenarios {
         width: 300px;
-        >* {
+        > scenario-list-item,
+        > div {
             height: 32px;
             width: 100%;
             border: 1px outset #222222;
@@ -15,6 +16,10 @@ scenario-builder {
             align-items: center;
             border-radius: 8px;
             cursor: pointer;
+        }
+        .add-button > span {
+            display: flex;
+            align-items: center;
         }
     }
 }

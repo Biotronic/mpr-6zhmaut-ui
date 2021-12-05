@@ -1,5 +1,13 @@
 scenario-list-item {
     user-select: none;
+    > span {
+        display: flex;
+        align-items: center;
+        span {
+            display: inline-block;
+        }
+    }
+    
 
     &.editing {
         .no-edit {
@@ -13,7 +21,8 @@ scenario-list-item {
     }
 
     &.selected {
-        background: red;
+        background: #222222;
+        font-weight: bold;
     }
 
     &.unselected {

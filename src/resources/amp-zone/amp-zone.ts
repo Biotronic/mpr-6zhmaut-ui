@@ -20,7 +20,7 @@ export class AmpZone {
     private id = '_' + uuid();
     private className: string;
     private subscriptions: Disposable[] = [];
-    private noSource: Source = { name: 'No change', id: null } as Source;
+    private noSource: Source = { name: 'No change', id: 0 } as Source;
 
     constructor(private bindingEngine: BindingEngine) {
     }

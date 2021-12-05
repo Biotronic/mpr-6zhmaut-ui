@@ -7,6 +7,7 @@ import './scenario-builder.scss';
 @autoinject
 export class ScenarioBuilder {
     @bindable
+    @observable
     public scenarios: Scenario[];
 
     @bindable
@@ -15,6 +16,9 @@ export class ScenarioBuilder {
     @bindable
     @observable
     public allZones: Zone[];
+
+    @bindable
+    public save: () => void;
 
     @observable
     private zones: Zone[] = [];
@@ -36,7 +40,13 @@ export class ScenarioBuilder {
         this.allZonesSubscription.dispose();
     }
 
-    zonesChanged(newValue: Zone[]) {
+    scenariosChanged(newValue: Scenario[], oldValue: Scenario[]) {
+        if (!oldValue?.length && newValue?.length) {
+            this.select(newValue[0]);
+        }
+    }
+
+    zonesChanged(newValue: Zone[], oldValue: Zone[]) {
         this.allZonesSubscription = this.bindingEngine.collectionObserver(this.zones)
             .subscribe(this.zonesElementChanged.bind(this));
         this.zonesElementChanged(newValue);
@@ -47,7 +57,6 @@ export class ScenarioBuilder {
     }
 
     allZonesChanged(newValue: Zone[]) {
-        console.log(newValue);
         if (this.allZonesSubscription) {
             this.allZonesSubscription.dispose();
         }
@@ -57,7 +66,6 @@ export class ScenarioBuilder {
     }
 
     allZonesElementChanged(newValue: Zone[]) {
-        console.log(newValue);
         this.zones = [];
         for (let z of this.allZones) {
             this.zones.push(new Zone(z.id, z.name));
@@ -73,15 +81,16 @@ export class ScenarioBuilder {
 
     select(scenario: Scenario) {
         if (this.selected) {
-            this.selected['selected'] = false;
+            this.selected.selected = false;
+            this.saveSelected();
         }
         this.selected = scenario;
-        this.selected['selected'] = true;
+        this.selected.selected = true;
         for (let zone of this.zones) {
             let existing = this.convertToEditor(scenario.zones.find(z => z.id == zone.id), zone.id);
             Object.assign(zone, existing);
         }
-        console.log(this.selected);
+        console.log('Selected: ', this.selected);
     }
 
     convertToEditor(zone: Partial<Zone>, id: number): Zone {
@@ -121,12 +130,17 @@ export class ScenarioBuilder {
             bass: zone.bass ?? 7,
             balance_checked: !!zone.balance,
             balance: zone.balance ?? 10,
-            source: !!zone.source ? zone.source : null,
+            source: !!zone.source ? zone.source : 0,
         };
     }
 
+    saveSelected() {
+        this.selected.zones = this.zones.map(z => this.convertFromEditor(z)).filter(z => z);
+        this.save();
+    }
+
     convertFromEditor(zone: Zone): Partial<Zone> {
-        if (zone.checked) {
+        if (!zone.checked) {
             return null;
         }
         return {
@@ -135,11 +149,11 @@ export class ScenarioBuilder {
             power: zone.power,
             mute: zone.mute,
             dnd: zone.dnd,
-            volume: zone.volume_checked ? zone.volume : null,
-            treble: zone.treble_Checked ? zone.treble : null,
-            bass: zone.bass_checked ? zone.bass : null,
-            balance: zone.balance_checked ? zone.balance : null,
-            source: zone.source > 0 ? zone.source : null,
+            volume: zone.volume_checked ? +zone.volume : null,
+            treble: zone.treble_Checked ? +zone.treble : null,
+            bass: zone.bass_checked ? +zone.bass : null,
+            balance: zone.balance_checked ? +zone.balance : null,
+            source: zone.source > 0 ? +zone.source : null,
         };
     }
 

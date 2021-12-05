@@ -40,7 +40,7 @@ export class AmpSource {
         this.input.checked = this.zone.source == this.source.id;
         this.editor.addEventListener('focusout', () => this.stopEditing());
         document.addEventListener('contextmenu', (e) => {
-            if (this.element.contains(e.target as Node)) {
+            if (this.element && this.element.contains(e.target as Node)) {
                 e.preventDefault();
                 this.showMenu();
             }
