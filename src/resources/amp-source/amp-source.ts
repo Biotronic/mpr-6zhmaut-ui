@@ -1,4 +1,4 @@
-import { autoinject, bindable, observable, BindingEngine, Disposable } from 'aurelia-framework';
+import { autoinject, bindable, observable } from 'aurelia-framework';
 import { Source } from 'resources/model/source';
 import { Zone } from 'resources/model/zone';
 import { v4 as uuid } from 'uuid';
@@ -12,74 +12,31 @@ export class AmpSource {
     @bindable
     public zone: Zone;
 
-    @observable
-    private checked: boolean;
-
     private input: HTMLInputElement;
-    private element: HTMLElement;
-    private editButton: HTMLElement;
     private editor: HTMLElement;
     private id = '_'+uuid();
     private editClass: string = 'normal';
+    private handler: any;
 
-    private exitMenuFn;
-    private bindingSubscription: Disposable;
-
-    constructor(private bindingEngine: BindingEngine) {
-        this.bindingSubscription = bindingEngine.expressionObserver(this, 'zone.source')
-            .subscribe((n: number) => {
-                this.checked = n == this.source.id;
-            });
+    constructor(){
+        this.handler = this.stopRename.bind(this);
     }
 
-    detached() {
-        this.bindingSubscription.dispose();
-    }
-
-    attached() {
-        this.input.checked = this.zone.source == this.source.id;
-        this.editor.addEventListener('focusout', () => this.stopEditing());
-        document.addEventListener('contextmenu', (e) => {
-            if (this.element && this.element.contains(e.target as Node)) {
-                e.preventDefault();
-                this.showMenu();
-            }
-        });
-        this.editButton.addEventListener('click', () => this.startEditor());
-        this.exitMenuFn = () => this.exitMenu();
-        this.input.addEventListener('input', () => {
-            if (this.input.checked) {
-                this.zone.source = this.source.id;
-            }
-        });
-        this.input.addEventListener('keyup', () => {
-            this.stopEditing();
-        });
-    }
-
-    showMenu() {
-        this.editClass = 'menuOpen';
-        document.addEventListener('click', this.exitMenuFn);
-    }
-
-    startEditor() {
+    renameSource() {
         this.editClass = 'editing';
         setTimeout(() => this.editor.focus(), 100);
-        document.removeEventListener('click', this.exitMenuFn);
+        document.addEventListener('click', this.handler);
     }
 
-    stopEditing() {
-        this.editClass = 'normal';
+    selectSource() {
+        this.zone.source = this.source.id;
     }
 
-    exitMenu() {
-        this.editClass = 'normal';
-        document.removeEventListener('click', this.exitMenuFn);
-    }
-
-    checkedChanged() {
-        if (this.checked) {
-            this.zone.source = this.source.id;
+    private stopRename(e: Event) {
+        if (this.editor.contains(e.target as Node)) {
+            return;
         }
+        this.editClass = 'normal';
+        document.removeEventListener('click', this.handler);
     }
 }

@@ -20,15 +20,18 @@ export class ScenarioListItem {
     private selectScenario() {
         this.select();
     }
+    
     private handler: any;
     private renameScenario() {
         this.element.classList.add('editing');
         this.element.querySelector('input').focus();
         document.addEventListener('click', this.handler);
     }
+
     private deleteScenario() {
         this.delete();
     }
+
     private stopRename(e: Event) {
         if (e.target == this.element.querySelector('input')) {
             return;

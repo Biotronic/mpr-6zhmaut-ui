@@ -1,14 +1,7 @@
-<template ref="element" class.bind="editClass">
-    <label for.bind="id">
-        <input id.bind="id" type="radio" ref="input" name="zone${zone.id}-source" model.bind="source.id" checked.bind="zone.source">
-        <span>${source.name}</span>
-        <input ref="editor" type="text" class="editor" value.two-way="source.name">
-    </label>
-    <div class="menu">
-        <ul>
-            <li ref="editButton">
-                Edit
-            </li>
-        </ul>
-    </div>
+<template ref="element" class.bind="(source.id == zone.source ? 'selected' : 'unselected')+' '+editClass" click.delegate="selectSource()">
+    <span>
+        <span class="no-edit">${source.name}</span>
+        <input type="text" value.bind="source.name" class="edit-only" ref="editor">
+        <span click.delegate="renameSource()" class="material-icons">edit</span>
+    </span>
 </template>
